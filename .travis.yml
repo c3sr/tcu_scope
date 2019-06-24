@@ -1,0 +1,126 @@
+
+dist: xenial
+sudo: required
+language: cpp
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-5
+      - g++-5
+      - libopenblas-dev
+      - libgsl0-dev
+      - liblapacke-dev
+      - google-perftools
+      - libgoogle-perftools-dev
+      - graphviz
+      - cmake
+
+matrix:
+  include:
+    addons:
+      apt:
+        sources:
+        - sourceline: deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /
+          key_url: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+        - sourceline: deb https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64 /
+      packages:
+        - libnccl2
+        - libnccl-dev
+        - cuda-cudart-9-1
+        - cuda-libraries-9-1
+        - cuda-command-line-tools-9-1
+        - libcudnn7=7.1.2.21-1+cuda9.1
+
+    env:
+      - CUDA=9.1
+      - CUDA_REPO=ubuntu1604
+      - CUDNN_VERSION=7.1.2.21
+      - CUDA_VERSION=9.1.85-1
+      - NCCL_VERSION=2.1.15
+      - NVIDIA_GPGKEY_SUM=d1be581509378368edeec8c1eb2958702feedf3bc3d17011adbf24efacce4ab5
+      - NVIDIA_GPGKEY_FPR=ae09fe4bbd223a84b2ccfce3f60f4b3d7fa2af80
+      - CUDNN_PKG_NAME=nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+      - CUDA_APT=${CUDA/./-}
+      - CUDA_PKG_NAME=cuda-repo-${CUDA_REPO}_${CUDA_VERSION}_amd64.deb
+      - CUDA_CUDNN_APT=libcudnn7=$CUDNN_VERSION-1+cuda9.1 libcudnn7-dev=$CUDNN_VERSION-1+cuda9.1
+      - CUDA_EXTRA_APT=libnccl-dev=$NCCL_VERSION-1+cuda9.1
+      - CUDA_PKG_URL=http://developer.download.nvidia.com/compute/cuda/repos/${CUDA_REPO}/x86_64/${CUDA_PKG_NAME}
+      - CUDNN_PKG_URL=https://developer.download.nvidia.com/compute/machine-learning/repos/${CUDA_REPO}/x86_64/${CUDNN_PKG_NAME}
+
+
+compiler:
+  - gcc
+
+
+cache:
+  apt: true
+  yarn: true
+  directories:
+    - node_modules
+    - $HOME/.npm
+    - $TRAVIS_BUILD_DIR/.cache
+    - $TRAVIS_BUILD_DIR/node_modules
+    - $HOME/.hunter
+
+
+# Installing additional packages
+before_install:
+    - echo "Installing NODEJS"
+    - nvm install node
+    - nvm use node
+    - npm install -g relaxedjs
+    #################################################################################
+    - echo "Installing CUDA support"
+
+
+    - export CUDA_HOME=/usr/local/cuda-${CUDA}
+    - sudo ln -s /usr/local/cuda-9.1 /usr/local/cuda
+    - ls -l /usr/local/cuda
+
+    - export LD_LIBRARY_PATH=/usr/local/nvidia/lib64:${LD_LIBRARY_PATH}
+    - export LD_LIBRARY_PATH=${CUDA_HOME}/nvvm/lib64:${LD_LIBRARY_PATH}
+    - export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
+    - export PATH=${CUDA_HOME}/bin:${PATH}
+
+    - ls -l /usr/local/cuda/bin
+    - ls -l /usr/local/cuda/lib64
+
+    - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 90
+    - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
+
+    #################################################################################
+    - echo "Installing CMAKE"
+    - export CMAKE_VERSION=3.11.1
+    - sudo mkdir /usr/local/cmake-${CMAKE_VERSION}
+    - cd /usr/local/cmake-${CMAKE_VERSION}
+    - sudo wget https://cmake.org/files/v3.11/cmake-${CMAKE_VERSION}-Linux-x86_64.sh
+    - sudo sh cmake-${CMAKE_VERSION}-Linux-x86_64.sh --prefix=/usr/local/cmake-${CMAKE_VERSION} --exclude-subdir
+    - ls -l /usr/local/cmake-${CMAKE_VERSION}
+    - export PATH=/usr/local/cmake-${CMAKE_VERSION}/bin:$PATH
+    - which cmake
+
+    #################################################################################
+    #################################################################################
+    - echo $TRAVIS_BUILD_ID
+    - echo $TRAVIS_EVENT_TYPE
+    - echo $TRAVIS_BUILD_NUMBER
+    - echo $TRAVIS_BUILD_DIR
+    - echo $TRAVIS_COMMIT
+    - echo $TRAVIS_COMMIT_MESSAGE
+    - echo $TRAVIS_COMMIT_RANGE
+    - echo $TRAVIS_JOB_ID
+    - echo $TRAVIS_JOB_NUMBER
+    - echo $TRAVIS_BRANCH
+    - echo $TRAVIS_COMMIT_MESSAGE
+    - echo $GITHUB_TOKEN
+    - echo $PATH
+    - echo $LD_LIBRARY_PATH
+
+script:
+  - cd $TRAVIS_BUILD_DIR
+  - cmake -DCONFIG_USE_TRAVIS=ON .
+  - make -j2
+  - ctest -j2
