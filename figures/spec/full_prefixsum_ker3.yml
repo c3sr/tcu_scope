@@ -1,0 +1,91 @@
+
+title: Full Prefixsum 3 Kernels (SegmentSize, Warps/Block)
+input_file: ../../../results/prefixsum.json
+output_file: ../../figures/full_prefixsum_ker3
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.02
+legend_columns: 2
+legend_location: upper left
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops
+  scale: 1e-9
+  # lim:
+  #   - 0
+  #   - 190
+  # scaling_function: log10
+xaxis:
+  label: Number of Elements (log scale)
+  field: num_elements
+  scale: 1.0
+  lim:
+    - 32768
+    - 2097152
+  scaling_function: log
+series:
+  - label: CUB
+    regex: CUB_FULL_PREFIXSUM.*
+
+  - label: Thrust
+    regex: THRUST_FULL_PREFIXSUM*
+
+  # - label: Ours (256, 1)
+  # #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<256, 1>.*
+  # - label: Ours (256, 2)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<256, 2>.*
+  # - label: Ours (256, 4)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<256, 4>.*
+  # - label: Ours (256, 8)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<256, 8>.*
+
+  # - label: Ours (2*256, 1)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<2 \* 256, 1>.*
+  # - label: Ours (2*256, 2)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<2 \* 256, 2>.*
+  # - label: Ours (2*256, 4)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<2 \* 256, 4>.*
+  # - label: Ours (2*256, 8)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<2 \* 256, 8>.*
+
+  # - label: Ours (4*256, 1)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<4 \* 256, 1>.*
+  # - label: Ours (4*256, 2)
+  - label: Ours
+    regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<4 \* 256, 8>.*
+  - label: Ours Block
+    regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS_BLOCK<8 \* 256, 8>.*
+  # - label: Ours (4*256, 4)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<4 \* 256, 4>.*
+  # - label: Ours (4*256, 8)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<4 \* 256, 8>.*
+
+  # - label: Ours (8*256, 1)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<8 \* 256, 1>.*
+  # - label: Ours (8*256, 2)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<8 \* 256, 2>.*
+  # - label: Ours (8*256, 4)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<4 \* 256, 4>.*
+  # - label: Ours (8*256, 8)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<8 \* 256, 8>.*
+
+  # - label: Ours (16*256, 1)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<16 \* 256, 1>.*
+  # - label: Ours (16*256, 2)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<16 \* 256, 2>.*
+  # - label: Ours (16*256, 4)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<16 \* 256, 4>.*
+  # - label: Ours (16*256, 8)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<16 \* 256, 8>.*
+
+  # - label: Ours (256*256, 1)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<256 \* 256, 1>.*
+  # - label: Ours (256*256, 2)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<256 \* 256, 2>.*
+  # - label: Ours (256*256, 4)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<256 \* 256, 4>.*
+  # - label: Ours (256*256, 8)
+  #   regex: CUDA_WMMA_FULL_PREFIXSUM_3KERS<256 \* 256, 8>.*
+

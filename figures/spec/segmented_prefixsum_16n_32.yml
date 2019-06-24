@@ -1,0 +1,43 @@
+title: Segmented Prefixsum SEGMENT_SIZE = 32
+input_file: ../../../results/prefixsum.json
+output_file: ../../figures/segmented_prefixsum_16n_32
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.08
+legend_columns: 3
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops
+  scale: 1e-9
+  # scaling_function: log10
+  # lim:
+  #   - 10
+  #   - 240
+xaxis:
+  label: Number of Elements (log scale)
+  field: num_elements
+  scale: 1.0
+  # lim:
+  #   - 16
+  #   - 8192
+  scaling_function: log
+series:
+  - label: thrust::inclusive_scan_by_key
+    regex: THRUST_SEGMENTED_PREFIXSUM.*/segment_size:32/.*
+
+  - label: cub::WarpScan
+    regex: CUB_WARP_SEGMENTED_PREFIXSUM<256, 32>.*/segment_size:32/.*
+
+  - label: WMMA 16N <1>
+    regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_16N<8>.*/segment_size:32/.*
+
+  - label: WMMA 16N Unsafe <1>
+    regex: CUDA_WMMA_UNSAFE_SEGMENTED_PREFIXSUM_16N<8>.*/segment_size:32/.*
+
+  - label: WMMA 16N Block <2>
+    regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_16N_BLOCK<2>.*/segment_size:32/.*
+
+  - label: WMMA 16N Block Unsafe <2>
+    regex: CUDA_WMMA_UNSAFE_SEGMENTED_PREFIXSUM_16N_BLOCK<2>.*/segment_size:32/.*

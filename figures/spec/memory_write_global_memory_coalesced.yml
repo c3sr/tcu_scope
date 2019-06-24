@@ -1,0 +1,55 @@
+
+title: Memory WriteGlobalMemoryCoalesced (repetition)
+input_file: ../../../results/memory.json
+output_file: ../../figures/memory_write_global_memory_coalesced
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.02
+legend_columns: 3
+plot_type: line
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops16
+  scale: 1e-9
+  # lim:
+  #   - 0
+  #   - 190
+  # scaling_function: log10
+xaxis:
+  label: Number of half precision elements (log scale)
+  field: num_elements
+  scale: 1.0
+  # lim:
+  #   - 0.3
+  #   - 2.3
+  scaling_function: log
+series:
+  - label: 1
+    regex: CUDA_Memory_Device_WriteGlobalMemoryCoalesced<1>.*
+  - label: 2
+    regex: CUDA_Memory_Device_WriteGlobalMemoryCoalesced<2>.*
+  - label: 4
+    regex: CUDA_Memory_Device_WriteGlobalMemoryCoalesced<4>.*
+  # - label: 8
+  #   regex: CUDA_Memory_Device_WriteGlobalMemoryCoalesced<8>.*
+  # - label: 16
+  #   regex: CUDA_Memory_Device_WriteGlobalMemoryCoalesced<16>.*
+  # - label: 32
+  #   regex: CUDA_Memory_Device_WriteGlobalMemoryCoalesced<32>.*
+  # - label: 64
+  #   regex: CUDA_Memory_Device_WriteGlobalMemoryCoalesced<64>.*
+  # - label: 128
+  #   regex: CUDA_Memory_Device_WriteGlobalMemoryCoalesced<128>.*
+  # - label: 256
+  #   regex: CUDA_Memory_Device_WriteGlobalMemoryCoalesced<256>.*
+  # - label: 512
+  #   regex: CUDA_Memory_Device_WriteGlobalMemoryCoalesced<512>.*
+  # - label: 1024
+  #   regex: CUDA_Memory_Device_WriteGlobalMemoryCoalesced<1024>.*
+  # - label: 2048
+  #   regex: CUDA_Memory_Device_WriteGlobalMemoryCoalesced<2048>.*
+  # - label: 4092
+  #   regex: CUDA_Memory_Device_WriteGlobalMemoryCoalesced<4092>.*
+

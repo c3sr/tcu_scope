@@ -1,0 +1,89 @@
+
+title: Full Reduction 2 Kernels (SegmentSize, Warps/Block)
+input_file: ../../../results/reduction.json
+output_file: ../../figures/full_reduction_ker2
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.02
+legend_columns: 2
+
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops
+  scale: 1e-9
+  # lim:
+  #   - 0
+  #   - 190
+  # scaling_function: log10
+xaxis:
+  label: Number of Elements (log scale)
+  field: num_elements
+  scale: 1.0
+  lim:
+    - 262144
+  #   - 2.3
+  scaling_function: log
+series:
+  - label: CUB
+    regex: CUB_FULL_REDUCTION.*
+  - label: Thrust
+    regex: THRUST_FULL_REDUCTION.*
+
+  # - label: Ours (256, 1)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<256, 1>.*
+  # - label: Ours (256, 2)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<256, 2>.*
+  # - label: Ours (256, 4)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<256, 4>.*
+  # - label: Ours (256, 8)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<256, 8>.*
+
+  # - label: Ours (2*256, 1)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<2 \* 256, 1>.*
+  # - label: Ours (2*256, 2)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<2 \* 256, 2>.*
+  # - label: Ours (2*256, 4)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<2 \* 256, 4>.*
+  # - label: Ours (2*256, 8)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<2 \* 256, 8>.*
+
+  # - label: Ours (4*256, 1)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<4 \* 256, 1>.*
+  # - label: Ours (4*256, 2)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<4 \* 256, 2>.*
+  # - label: Ours (4*256, 4)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<4 \* 256, 4>.*
+  # - label: Ours (4*256, 8)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<4 \* 256, 8>.*
+
+  # - label: Ours (8*256, 1)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<8 \* 256, 1>.*
+  # - label: Ours (8*256, 2)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<8 \* 256, 2>.*
+  # - label: Ours (8*256, 4)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<4 \* 256, 4>.*
+  # - label: Our 256N
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<8 \* 256, 8>.*
+
+  # - label: Ours (16*256, 1)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<16 \* 256, 1>.*
+  # - label: Ours (16*256, 2)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<16 \* 256, 2>.*
+  # - label: Ours (16*256, 4)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<16 \* 256, 4>.*
+  # - label: Ours (16*256, 8)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<16 \* 256, 8>.*
+
+  # - label: Ours (256*256, 1)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<256 \* 256, 1>.*
+  # - label: Ours (256*256, 2)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<256 \* 256, 2>.*
+  # - label: Ours (256*256, 4)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<256 \* 256, 4>.*
+  # - label: Ours (256*256, 8)
+  #   regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BASE_256<256 \* 256, 8>.*
+
+  - label: Ours
+    regex: CUDA_WMMA_FULL_REDUCTION_2KERS_BLOCK_BASE_256<64 \* 256, 8>.*

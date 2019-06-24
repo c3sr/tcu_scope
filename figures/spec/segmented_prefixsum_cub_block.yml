@@ -1,0 +1,127 @@
+
+title: Segmented Prefixsum cub::BlockScan <THREADS_PER_BLOCK, ITEMS_PER_THREAD>
+input_file: ../../../results/prefixsum.json
+output_file: ../../figures/segmented_prefixsum_cub_block
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.08
+legend_columns: 3
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops
+  scale: 1e-9
+  # scaling_function: log10
+  # lim:
+  #   - 10
+  #   - 240
+xaxis:
+  label: Number of Elements (log scale)
+  field: num_elements
+  scale: 1.0
+  # lim:
+  #   - 256
+  #   - 8192
+  scaling_function: log
+series:
+  - label: SEGMENT_SIZE 32 <32, 1>
+    regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<32, 1, BLOCK_SCAN_RAKING>.*/segment_size:32/.*
+
+  - label: SEGMENT_SIZE 64 <64, 1>
+    regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<64, 1, BLOCK_SCAN_RAKING>.*/segment_size:64/.*
+  # - label: SEGMENT_SIZE <32, 2>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<32, 2, BLOCK_SCAN_RAKING>.*/segment_size:64/.*
+
+  - label: SEGMENT_SIZE 128 <128, 1>
+    regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<128, 1, BLOCK_SCAN_RAKING>.*/segment_size:128/.*
+  # - label: SEGMENT_SIZE <64, 2>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<64, 2, BLOCK_SCAN_RAKING>.*/segment_size:128/.*
+  # - label: SEGMENT_SIZE <32, 4>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<32, 4, BLOCK_SCAN_RAKING>.*/segment_size:128/.*
+
+  - label: SEGMENT_SIZE 256 <256, 1>
+    regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<256, 1, BLOCK_SCAN_RAKING>.*/segment_size:256/.*
+  # - label: SEGMENT_SIZE <128, 2>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<128, 2, BLOCK_SCAN_RAKING>.*/segment_size:256/.*
+  # - label: SEGMENT_SIZE <64, 4>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<64, 4, BLOCK_SCAN_RAKING>.*/segment_size:256/.*
+  # - label: SEGMENT_SIZE <32, 8>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<32, 8, BLOCK_SCAN_RAKING>.*/segment_size:256/.*
+
+  # - label: SEGMENT_SIZE <512, 1>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<512, 1, BLOCK_SCAN_RAKING>.*/segment_size:512/.*
+  # - label: SEGMENT_SIZE <256, 2>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<256, 2, BLOCK_SCAN_RAKING>.*/segment_size:512/.*
+  # - label: SEGMENT_SIZE <128, 4>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<128, 4, BLOCK_SCAN_RAKING>.*/segment_size:512/.*
+  # - label: SEGMENT_SIZE <64, 8>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<64, 8, BLOCK_SCAN_RAKING>.*/segment_size:512/.*
+  - label: SEGMENT_SIZE 512 <32, 16>
+    regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<32, 16, BLOCK_SCAN_RAKING>.*/segment_size:512/.*
+
+  # - label: SEGMENT_SIZE <1024, 1>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<1024, 1, BLOCK_SCAN_RAKING>.*/segment_size:1024/.*
+  # - label: SEGMENT_SIZE <512, 2>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<512, 2, BLOCK_SCAN_RAKING>.*/segment_size:1024/.*
+  # - label: SEGMENT_SIZE <256, 4>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<256, 4, BLOCK_SCAN_RAKING>.*/segment_size:1024/.*
+  # - label: SEGMENT_SIZE <128, 8>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<128, 8, BLOCK_SCAN_RAKING>.*/segment_size:1024/.*
+  - label: SEGMENT_SIZE 1024 <64, 16>
+    regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<64, 16, BLOCK_SCAN_RAKING>.*/segment_size:1024/.*
+  # - label: SEGMENT_SIZE <32, 32>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<32, 32, BLOCK_SCAN_RAKING>.*/segment_size:1024/.*
+
+  # - label: SEGMENT_SIZE <1024, 2>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<1024, 2, BLOCK_SCAN_RAKING>.*/segment_size:2048/.*
+  # - label: SEGMENT_SIZE <512, 4>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<512, 4, BLOCK_SCAN_RAKING>.*/segment_size:2048/.*
+  # - label: SEGMENT_SIZE <256, 8>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<256, 8, BLOCK_SCAN_RAKING>.*/segment_size:2048/.*
+  - label: SEGMENT_SIZE 2048 <128, 16>
+    regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<128, 16, BLOCK_SCAN_RAKING>.*/segment_size:2048/.*
+  # - label: SEGMENT_SIZE <64, 32>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<64, 32, BLOCK_SCAN_RAKING>.*/segment_size:2048/.*
+  # - label: SEGMENT_SIZE <32, 64>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<32, 64, BLOCK_SCAN_RAKING>.*/segment_size:2048/.*
+
+  # - label: SEGMENT_SIZE <1024, 4>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<1024, 4, BLOCK_SCAN_RAKING>.*/segment_size:4096/.*
+  # - label: SEGMENT_SIZE <512, 8>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<512, 8, BLOCK_SCAN_RAKING>.*/segment_size:4096/.*
+  - label: SEGMENT_SIZE 4096 <256, 16>
+    regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<256, 16, BLOCK_SCAN_RAKING>.*/segment_size:4096/.*
+  # - label: SEGMENT_SIZE <128, 32>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<128, 32, BLOCK_SCAN_RAKING>.*/segment_size:4096/.*
+  # - label: SEGMENT_SIZE <64, 64>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<64, 64, BLOCK_SCAN_RAKING>.*/segment_size:4096/.*
+  # - label: SEGMENT_SIZE <32, 128>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<32, 128, BLOCK_SCAN_RAKING>.*/segment_size:4096/.*
+
+  # - label: SEGMENT_SIZE <1024, 8>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<1024, 8, BLOCK_SCAN_RAKING>.*/segment_size:8192/.*
+  - label: SEGMENT_SIZE 8192 <512, 16>
+    regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<512, 16, BLOCK_SCAN_RAKING>.*/segment_size:8192/.*
+  # - label: SEGMENT_SIZE <256, 32>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<256, 32, BLOCK_SCAN_RAKING>.*/segment_size:8192/.*
+  # - label: SEGMENT_SIZE <128, 64>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<128, 64, BLOCK_SCAN_RAKING>.*/segment_size:8192/.*
+  # - label: SEGMENT_SIZE <64, 128>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<64, 128, BLOCK_SCAN_RAKING>.*/segment_size:8192/.*
+  # - label: SEGMENT_SIZE <32, 256>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<32, 256, BLOCK_SCAN_RAKING>.*/segment_size:8192/.*
+
+
+  # - label: SEGMENT_SIZE <1024, 16>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<1024, 16, BLOCK_SCAN_RAKING>.*/segment_size:16384/.*
+  - label: SEGMENT_SIZE 16384 <512, 32>
+    regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<512, 32, BLOCK_SCAN_RAKING>.*/segment_size:16384/.*
+  # - label: SEGMENT_SIZE <256, 64>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<256, 64, BLOCK_SCAN_RAKING>.*/segment_size:16384/.*
+  # - label: SEGMENT_SIZE <128, 128>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<128, 128, BLOCK_SCAN_RAKING>.*/segment_size:16384/.*
+  # - label: SEGMENT_SIZE <64, 256>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<64, 256, BLOCK_SCAN_RAKING>.*/segment_size:16384/.*
+  # - label: SEGMENT_SIZE <32, 512>
+  #   regex: ^CUB_BLOCK_SEGMENTED_PREFIXSUM<32, 512, BLOCK_SCAN_RAKING>.*/segment_size:16384/.*

@@ -1,0 +1,73 @@
+
+title: Segmented Reduction 16 <SEGMENTS_PER_WARP, WARPS_PER_BLOCK>
+input_file: ../../../results/reduction.json
+output_file: ../../figures/segmented_reduction_16
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.08
+legend_columns: 1
+legend_location: upper left
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops
+  scale: 1e-9
+  # lim:
+  #   - 0
+  #   - 190
+  # scaling_function: log10
+xaxis:
+  label: Number of 16 Segments (log scale)
+  field: num_segments
+  scale: 1.0
+  lim:
+    - 256
+  #   - 2.3
+  scaling_function: log
+series:
+  - label: thrust::reduce_by_key
+    regex: THRUST_SEGMENTED_REDUCTION.*/segment_size:16/.*
+
+  - label: cub::DeviceSegmentedReduce
+    regex: CUB_DEVICE_SEGMENTED_REDUCTION/.*/segment_size:16/.*
+
+  - label: cub::WarpReduce
+    regex: CUB_WARP_SEGMENTED_REDUCTION<256, 16>.*/segment_size:16/.*
+
+  # - label: Our 16 <1, 1>
+  #   regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<1, 1>.*/segment_size:16/.*
+  - label: Our 16 <1, 2>
+    regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<1, 2>.*/segment_size:16/.*
+  # - label: Our 16 <1, 4>
+  #   regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<1, 4>.*/segment_size:16/.*
+  # - label: Our 16 <1, 8>
+  #   regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<1, 8>.*/segment_size:16/.*
+
+  # - label: Our 16 <2, 1>
+  #   regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<2, 1>.*/segment_size:16/.*
+  - label: Our 16 <2, 2>
+    regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<2, 2>.*/segment_size:16/.*
+  # - label: Our 16 <2, 4>
+  #   regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<2, 4>.*/segment_size:16/.*
+  # - label: Our 16 <2, 8>
+  #   regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<2, 8>.*/segment_size:16/.*
+
+  # - label: Our 16 <4, 1>
+  #   regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<4, 1>.*/segment_size:16/.*
+  - label: Our 16 <4, 2>
+    regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<4, 2>.*/segment_size:16/.*
+  # - label: Our 16 <4, 4>
+  #   regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<4, 4>.*/segment_size:16/.*
+  # - label: Our 16 <4, 8>
+  #   regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<4, 8>.*/segment_size:16/.*
+
+  # - label: Our 16 <8, 1>
+  #   regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<8, 1>.*/segment_size:16/.*
+  - label: Our 16 <8, 2>
+    regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<8, 2>.*/segment_size:16/.*
+  # - label: Our 16 <8, 4>
+  #   regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<8, 4>.*/segment_size:16/.*
+  # - label: Our 16 <8, 8>
+  #   regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<8, 8>.*/segment_size:16/.*
+

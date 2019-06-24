@@ -1,0 +1,39 @@
+
+title: GEMM 16F Input and 32F Compute
+input_file: ../../../results/gemm.json
+output_file: ../../figures/gemm_16_32
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.02
+plot_type: line
+yaxis:
+  label: Mixed Precision TFLOPS
+  field: flops
+  scale: 1e-12
+  # lim:
+  #   - 0
+  #   - 190
+  # scaling_function: log10
+xaxis:
+  label: M = N = K (log scale)
+  field: M
+  scale: 1.0
+  lim:
+    - 512
+  #   - 2.3
+  scaling_function: log
+series:
+  - label: WMMA MGEMM
+    regex: CUDA_WMMA_GEMM/.*
+  - label: WMMA MGEMM (na\"ive)
+    regex: CUDA_WMMA_GEMM_NAIVE/.*
+
+  - label: cuBLAS MGEMM w/o TCU
+    regex: CUBLAS_GEMM/.*
+  - label: cuBLAS MGEMM w TCU
+    regex: CUBLAS_WMMA_GEMM/.*
+
+  - label: CUTLASS MGEMM
+    regex: CUTLASS_WGEMM.*

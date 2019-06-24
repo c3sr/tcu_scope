@@ -1,0 +1,45 @@
+
+
+title: Segmented Prefixsum SEGMENT_SIZE = 4096
+input_file: ../../../results/prefixsum.json
+output_file: ../../figures/segmented_prefixsum_256n_4096
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.08
+legend_columns: 3
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops
+  scale: 1e-9
+  # scaling_function: log10
+  # lim:
+  #   - 10
+  #   - 240
+xaxis:
+  label: Number of Elements (log scale)
+  field: num_elements
+  scale: 1.0
+  lim:
+    - 4092
+  #   - 8192
+  scaling_function: log
+series:
+  - label: thrust::inclusive_scan_by_key
+    regex: THRUST_SEGMENTED_PREFIXSUM.*/segment_size:4096/.*
+
+  - label: cub::BlockScan
+    regex: CUB_BLOCK_SEGMENTED_PREFIXSUM<256, 16, BLOCK_SCAN_RAKING>.*/segment_size:4096/.*
+
+  - label: WMMA 256N <2>
+    regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256N<2>.*/segment_size:4096/.*
+
+  - label: WMMA 256N Unsafe <2>
+    regex: CUDA_WMMA_UNSAFE_SEGMENTED_PREFIXSUM_256N<2>.*/segment_size:4096/.*
+
+  - label: WMMA 256N BLOCK <1>
+    regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256N_BLOCK<1>.*/segment_size:4096/.*
+
+  - label: WMMA 256N BLOCK Unsafe <1>
+    regex: CUDA_WMMA_UNSAFE_SEGMENTED_PREFIXSUM_256N_BLOCK<1>.*/segment_size:4096/.*

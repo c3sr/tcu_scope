@@ -1,0 +1,56 @@
+
+title: Segmented Reduction SEGMENT_SIZE = 16
+input_file: ../../../results/reduction.json
+output_file: ../../figures/segmented_reduction_16n_16
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.08
+legend_columns: 3
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops
+  scale: 1e-9
+  # scaling_function: log10
+  # lim:
+  #   - 10
+  #   - 240
+xaxis:
+  label: Number of Elements (log scale)
+  field: num_elements
+  scale: 1.0
+  # lim:
+  #   - 16
+  #   - 8192
+  scaling_function: log
+series:
+  - label: thrust::reduce_by_key
+    regex: THRUST_SEGMENTED_REDUCTION/.*/segment_size:16/.*
+
+  - label: cub::DeviceSegmentedReduce
+    regex: CUB_DEVICE_SEGMENTED_REDUCTION.*/segment_size:16/.*
+
+  - label: cub::WarpReduce
+    regex: CUB_WARP_SEGMENTED_REDUCTION<256, 16>.*/segment_size:16/.*
+
+  - label: WMMA 16 <4, 2>
+    regex: CUDA_WMMA_SEGMENTED_REDUCTION_16<4, 2>.*/segment_size:16/.*
+
+  - label: WMMA 16N <8>
+    regex: CUDA_WMMA_SEGMENTED_REDUCTION_16N<8>.*/segment_size:16/.*
+
+  - label: WMMA 16N Unsafe <8>
+    regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N<8>.*/segment_size:16/.*
+
+  - label: WMMA 16N Opt <2>
+    regex: CUDA_WMMA_SEGMENTED_REDUCTION_16N_OPT<2>.*/segment_size:16/.*
+
+  - label: WMMA 16N Opt Unsafe <2>
+    regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<2>.*/segment_size:16/.*
+
+  - label: WMMA 16N Block <1>
+    regex: CUDA_WMMA_SEGMENTED_REDUCTION_16N_BLOCK<1>.*/segment_size:16/.*
+
+  - label: WMMA 16N Block Unsafe <1>
+    regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_BLOCK<1>.*/segment_size:16/.*

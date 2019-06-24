@@ -1,0 +1,54 @@
+
+title: Tuning Segmented Reduction
+input_file: ../../../results/reduction_old.json
+output_file: ../../figures/paper_tune_segmented_reduction
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.08
+legend_location: upper right
+legend_columns: 1
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops
+  scale: 1e-9
+  # scaling_function: log10
+  # lim:
+  #   - 10
+  #   - 240
+xaxis:
+  label: Segment Size (log scale)
+  field: segment_size
+  scale: 1.0
+  lim:
+    - 16
+  #   - 8192
+  scaling_function: log
+series:
+  - label: CUB
+    regex: CUB_DEVICE_TUNE_SEGMENTED_REDUCTION.*base_segment_size:16.*max_elements_log2:30.*
+
+  # - label: Our 16N
+  #   regex: CUDA_WMMA_TUNE_SEGMENTED_REDUCTION_16N<16>.*base_segment_size:16.*max_elements_log2:30.*
+
+  - label: Our 16N
+    regex: CUDA_UNSAFE_WMMA_TUNE_SEGMENTED_REDUCTION_16N<16>.*base_segment_size:16.*max_elements_log2:30.*
+
+  # - label: WMMA 16N Opt<2>
+  #   regex: CUDA_WMMA_TUNE_SEGMENTED_REDUCTION_16N_OPT<16>.*base_segment_size:16.*max_elements_log2:30.*
+
+  # - label: WMMA 16N Opt Unsafe <2>
+  #   regex: CUDA_UNSAFE_WMMA_TUNE_SEGMENTED_REDUCTION_16N_OPT<16>.*base_segment_size:16.*max_elements_log2:30.*
+
+  # - label: WMMA 256N <4>
+  #   regex: CUDA_WMMA_TUNE_SEGMENTED_REDUCTION_256N<4>.*base_segment_size:256.*max_elements_log2:30.*
+
+  - label: Our 256N
+    regex: CUDA_UNSAFE_WMMA_TUNE_SEGMENTED_REDUCTION_256N<4>.*base_segment_size:256.*max_elements_log2:30.*
+
+  - label: Our 256N Block
+    regex: CUDA_WMMA_TUNE_SEGMENTED_REDUCTION_256N_BLOCK<16>.*base_segment_size:256.*max_elements_log2:30.*
+
+  # - label: WMMA 256N Block Unsafe<16>
+  #   regex: CUDA_UNSAFE_WMMA_TUNE_SEGMENTED_REDUCTION_256N_BLOCK<16>.*base_segment_size:256.*max_elements_log2:30.*

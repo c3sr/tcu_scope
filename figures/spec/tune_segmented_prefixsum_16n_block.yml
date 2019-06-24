@@ -1,0 +1,41 @@
+
+title: Tuning Segmented Prefixsum 16N Block
+input_file: ../../../results/prefixsum.json
+output_file: ../../figures/tune_segmented_prefixsum_16n_block
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.08
+legend_location: upper right
+legend_columns: 3
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops
+  scale: 1e-9
+  # scaling_function: log10
+  # lim:
+  #   - 10
+  #   - 240
+xaxis:
+  label: Segment Size (log scale)
+  field: segment_size
+  scale: 1.0
+  # lim:
+  #   - 16
+  #   - 8192
+  scaling_function: log
+series:
+  - label: Thrust
+    regex: THRUST_TUNE_SEGMENTED_PREFIXSUM.*base_segment_size:16.*max_elements_log2:30.*
+
+  - label: WMMA 16N Block <1>
+    regex: CUDA_WMMA_TUNE_SEGMENTED_PREFIXSUM_16N_BLOCK<1>.*base_segment_size:16.*max_elements_log2:30.*
+  - label: WMMA 16N Block <2>
+    regex: CUDA_WMMA_TUNE_SEGMENTED_PREFIXSUM_16N_BLOCK<2>.*base_segment_size:16.*max_elements_log2:30.*
+  - label: WMMA 16N Block <4>
+    regex: CUDA_WMMA_TUNE_SEGMENTED_PREFIXSUM_16N_BLOCK<4>.*base_segment_size:16.*max_elements_log2:30.*
+  - label: WMMA 16N Block <8>
+    regex: CUDA_WMMA_TUNE_SEGMENTED_PREFIXSUM_16N_BLOCK<8>.*base_segment_size:16.*max_elements_log2:30.*
+  - label: WMMA 16N Block <16>
+    regex: CUDA_WMMA_TUNE_SEGMENTED_PREFIXSUM_16N_BLOCK<16>.*base_segment_size:16.*max_elements_log2:30.*

@@ -1,0 +1,132 @@
+
+title: Full Reduction Unsafe (SegmentSize, Warps/Block)
+input_file: ../../../results/reduction.json
+output_file: ../../figures/full_reduction_unsafe
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.02
+plot_type: line
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops
+  scale: 1e-9
+  # lim:
+  #   - 0
+  #   - 190
+  # scaling_function: log10
+xaxis:
+  label: Number of Elements (log scale)
+  field: num_elements
+  scale: 1.0
+  # lim:
+  #   - 0.3
+  #   - 2.3
+  scaling_function: log
+series:
+
+  # - label: 2 Kernels (256, 1)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<256, 1>.*
+  # - label: 2 Kernels (256, 2)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<256, 2>.*
+  # - label: 2 Kernels (256, 4)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<256, 4>.*
+  # - label: 2 Kernels (256, 8)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<256, 8>.*
+
+  # - label: 2 Kernels (2*256, 1)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<2 \* 256, 1>.*
+  # - label: 2 Kernels (2*256, 2)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<2 \* 256, 2>.*
+  # - label: 2 Kernels (2*256, 4)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<2 \* 256, 4>.*
+  # - label: 2 Kernels (2*256, 8)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<2 \* 256, 8>.*
+
+  # - label: 2 Kernels (4*256, 1)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<4 \* 256, 1>.*
+  # - label: 2 Kernels (4*256, 2)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<4 \* 256, 2>.*
+  # - label: 2 Kernels (4*256, 4)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<4 \* 256, 4>.*
+  # - label: 2 Kernels (4*256, 8)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<4 \* 256, 8>.*
+
+  # - label: 2 Kernels (8*256, 1)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<8 \* 256, 1>.*
+  # - label: 2 Kernels (8*256, 2)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<8 \* 256, 2>.*
+  # - label: 2 Kernels (8*256, 4)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<4 \* 256, 4>.*
+  - label: 2 Kernels (8*256, 8)
+    regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_2KERS<8 \* 256, 8>.*
+
+  # - label: CG (8*256, 4)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_CG<8 \* 256, 4>.*
+  # - label: CG (8*256, 2)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_CG<8 \* 256, 2>.*
+  # - label: CG (8*256, 4)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_CG<8 \* 256, 4>.*
+  # - label: CG (8*256, 8)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_CG<8 \* 256, 8>.*
+
+
+
+  ## Atomic Ballot
+  # - label: Atomic Ballot (4*256, 1)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_ATOMIC_BALLOT<4 \* 256, 1>.*
+  # - label: Atomic Ballot (4*256, 4)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_ATOMIC_BALLOT<4 \* 256, 4>.*
+  # - label: Atomic Ballot (4*256, 8)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_ATOMIC_BALLOT<4 \* 256, 8>.*
+  # - label: Atomic Ballot (4*256, 16)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_ATOMIC_BALLOT<4 \* 256, 16>.*
+
+
+  # - label: Atomic Ballot (8*256, 1)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_ATOMIC_BALLOT<8 \* 256, 1>.*
+  # - label: Atomic Ballot (8*256, 4)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_ATOMIC_BALLOT<8 \* 256, 4>.*
+  # - label: Atomic Ballot (8*256, 8)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_ATOMIC_BALLOT<8 \* 256, 8>.*
+  # - label: Atomic Ballot (8*256, 16)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_ATOMIC_BALLOT<8 \* 256, 16>.*
+
+  # - label: Atomic Ballot (16*256, 1)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_ATOMIC_BALLOT<16 \* 256, 1>.*
+  # - label: Atomic Ballot (16*256, 4)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_ATOMIC_BALLOT<16 \* 256, 4>.*
+  - label: Atomic Ballot (16*256, 8)
+    regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_ATOMIC_BALLOT<16 \* 256, 8>.*
+  # - label: Atomic Ballot (16*256, 16)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_ATOMIC_BALLOT<16 \* 256, 16>.*
+
+  ## Atomic Block Sync
+  # - label: Atomic Block Sync (4*256, 1)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_BLOCK_SYNC<4 \* 256, 1>.*
+  # - label: Atomic Block Sync (4*256, 4)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_BLOCK_SYNC<4 \* 256, 4>.*
+  - label: Atomic Block Sync (4*256, 8)
+    regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_BLOCK_SYNC<4 \* 256, 8>.*
+  # - label: Atomic Block Sync (4*256, 16)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_BLOCK_SYNC<4 \* 256, 16>.*
+
+
+  # - label: Atomic Block Sync (8*256, 1)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_BLOCK_SYNC<8 \* 256, 1>.*
+  # - label: Atomic Block Sync (8*256, 4)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_BLOCK_SYNC<8 \* 256, 4>.*
+  # - label: Atomic Block Sync (8*256, 8)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_BLOCK_SYNC<8 \* 256, 8>.*
+  # - label: Atomic Block Sync (8*256, 16)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_BLOCK_SYNC<8 \* 256, 16>.*
+
+  # - label: Atomic Block Sync (16*256, 1)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_BLOCK_SYNC<16 \* 256, 1>.*
+  # - label: Atomic Block Sync (16*256, 4)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_BLOCK_SYNC<16 \* 256, 4>.*
+  # - label: Atomic Block Sync (16*256, 8)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_BLOCK_SYNC<16 \* 256, 8>.*
+  # - label: Atomic Block Sync (16*256, 16)
+  #   regex: CUDA_UNSAFE_WMMA_FULL_REDUCTION_ATOMIC_W_BLOCK_SYNC<16 \* 256, 16>.*

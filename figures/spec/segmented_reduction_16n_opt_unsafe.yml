@@ -1,0 +1,120 @@
+
+title: Segmented Reduction Nx16 Opt Unsafe <WARPS_PER_BLOCK>
+input_file: ../../../results/reduction.json
+output_file: ../../figures/segmented_reduction_16n_opt_unsafe
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.08
+legend_columns: 3
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops
+  scale: 1e-9
+  # scaling_function: log10
+  # lim:
+  #   - 10
+  #   - 240
+xaxis:
+  label: Number of Elements (log scale)
+  field: num_elements
+  scale: 1.0
+  # lim:
+  #   - 16
+  #   - 8192
+  scaling_function: log
+series:
+
+  - label: SEGMENT_SIZE 16 <2>
+    regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<2>.*/segment_size:16/.*
+  - label: SEGMENT_SIZE 32 <2>
+    regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<2>.*/segment_size:32/.*
+  - label: SEGMENT_SIZE 64 <2>
+    regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<2>.*/segment_size:64/.*
+  - label: SEGMENT_SIZE 128 <2>
+    regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<2>.*/segment_size:128/.*
+  - label: SEGMENT_SIZE 256 <1>
+    regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<1>.*/segment_size:256/.*
+  - label: SEGMENT_SIZE 512 <1>
+    regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<1>.*/segment_size:512/.*
+  - label: SEGMENT_SIZE 1024 <1>
+    regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<1>.*/segment_size:1024/.*
+
+
+  # - label: SEGMENT_SIZE 16 <1>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<1>.*/segment_size:16/.*
+  # - label: SEGMENT_SIZE 16 <2>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<2>.*/segment_size:16/.*
+  # - label: SEGMENT_SIZE 16 <4>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<4>.*/segment_size:16/.*
+  # - label: SEGMENT_SIZE 16 <8>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<8>.*/segment_size:16/.*
+  # - label: SEGMENT_SIZE 16 <16>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<16>.*/segment_size:16/.*
+
+  # - label: SEGMENT_SIZE 32 <1>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<1>.*/segment_size:32/.*
+  # - label: SEGMENT_SIZE 32 <2>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<2>.*/segment_size:32/.*
+  # - label: SEGMENT_SIZE 32 <4>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<4>.*/segment_size:32/.*
+  # - label: SEGMENT_SIZE 32 <8>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<8>.*/segment_size:32/.*
+  # - label: SEGMENT_SIZE 32 <16>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<16>.*/segment_size:32/.*
+
+  # - label: SEGMENT_SIZE 64 <1>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<1>.*/segment_size:64/.*
+  # - label: SEGMENT_SIZE 64 <2>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<2>.*/segment_size:64/.*
+  # - label: SEGMENT_SIZE 64 <4>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<4>.*/segment_size:64/.*
+  # - label: SEGMENT_SIZE 64 <8>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<8>.*/segment_size:64/.*
+  # - label: SEGMENT_SIZE 64 <16>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<16>.*/segment_size:64/.*
+
+  # - label: SEGMENT_SIZE 128 <1>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<1>.*/segment_size:128/.*
+  # - label: SEGMENT_SIZE 128 <2>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<2>.*/segment_size:128/.*
+  # - label: SEGMENT_SIZE 128 <4>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<4>.*/segment_size:128/.*
+  # - label: SEGMENT_SIZE 128 <8>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<8>.*/segment_size:128/.*
+  # - label: SEGMENT_SIZE 128 <16>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<16>.*/segment_size:128/.*
+
+  # - label: SEGMENT_SIZE 256 <1>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<1>.*/segment_size:256/.*
+  # - label: SEGMENT_SIZE 256 <2>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<2>.*/segment_size:256/.*
+  # - label: SEGMENT_SIZE 256 <4>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<4>.*/segment_size:256/.*
+  # - label: SEGMENT_SIZE 256 <8>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<8>.*/segment_size:256/.*
+  # - label: SEGMENT_SIZE 256 <16>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<16>.*/segment_size:256/.*
+
+  # - label: SEGMENT_SIZE 512 <1>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<1>.*/segment_size:512/.*
+  # - label: SEGMENT_SIZE 512 <2>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<2>.*/segment_size:512/.*
+  # - label: SEGMENT_SIZE 512 <4>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<4>.*/segment_size:512/.*
+  # - label: SEGMENT_SIZE 512 <8>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<8>.*/segment_size:512/.*
+  # - label: SEGMENT_SIZE 512 <16>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<16>.*/segment_size:512/.*
+
+  # - label: SEGMENT_SIZE 1024 <1>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<1>.*/segment_size:1024/.*
+  # - label: SEGMENT_SIZE 1024 <2>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<2>.*/segment_size:1024/.*
+  # - label: SEGMENT_SIZE 1024 <4>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<4>.*/segment_size:1024/.*
+  # - label: SEGMENT_SIZE 1024 <8>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<8>.*/segment_size:1024/.*
+  # - label: SEGMENT_SIZE 1024 <16>
+  #   regex: CUDA_UNSAFE_WMMA_SEGMENTED_REDUCTION_16N_OPT<16>.*/segment_size:1024/.*

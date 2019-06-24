@@ -1,0 +1,68 @@
+title: Segmented Prefixsum 256 <SEGMENTS_PER_WARP, WARPS_PER_BLOCK>
+input_file: ../../../results/prefixsum.json
+output_file: ../../figures/segmented_prefixsum_256
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.08
+legend_columns: 2
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops
+  scale: 1e-9
+  # lim:
+  #   - 0
+  #   - 250
+  # scaling_function: log10
+xaxis:
+  label: Number of 256 Segments (log scale)
+  field: num_segments
+  scale: 1.0
+  # lim:
+  #   - 512
+  #   - 2048
+  scaling_function: log
+series:
+  - label: thrust::inclusive_scan_by_key
+    regex: THRUST_SEGMENTED_PREFIXSUM.*/segment_size:256/.*
+
+  - label: cub::BlockScan
+    regex: CUB_BLOCK_SEGMENTED_PREFIXSUM<256, 1, BLOCK_SCAN_RAKING>.*/segment_size:256/.*
+
+  # - label: WMMA 256 <1, 1>
+  #   regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<1, 1>.*/segment_size:256/.*
+  - label: WMMA 256 <1, 2>
+    regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<1, 2>.*/segment_size:256/.*
+  # - label: WMMA 256 <1, 4>
+  #   regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<1, 4>.*/segment_size:256/.*
+  # - label: WMMA 256 <1, 8>
+  #   regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<1, 8>.*/segment_size:256/.*
+
+  # - label: WMMA 256 <2, 1>
+  #   regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<2, 1>.*/segment_size:256/.*
+  - label: WMMA 256 <2, 2>
+    regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<2, 2>.*/segment_size:256/.*
+  # - label: WMMA 256 <2, 4>
+  #   regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<2, 4>.*/segment_size:256/.*
+  # - label: WMMA 256 <2, 8>
+  #   regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<2, 8>.*/segment_size:256/.*
+
+  # - label: WMMA 256 <4, 1>
+  #   regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<4, 1>.*/segment_size:256/.*
+  - label: WMMA 256 <4, 2>
+    regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<4, 2>.*/segment_size:256/.*
+  # - label: WMMA 256 <4, 4>
+  #   regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<4, 4>.*/segment_size:256/.*
+  # - label: WMMA 256 <4, 8>
+  #   regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<4, 8>.*/segment_size:256/.*
+
+  # - label: WMMA 256 <8, 1>
+  #   regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<8, 1>.*/segment_size:256/.*
+  - label: WMMA 256 <8, 2>
+    regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<8, 2>.*/segment_size:256/.*
+  # - label: WMMA 256 <8, 4>
+  #   regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<8, 4>.*/segment_size:256/.*
+  # - label: WMMA 256 <8, 8>
+  #   regex: CUDA_WMMA_SEGMENTED_PREFIXSUM_256<8, 8>.*/segment_size:256/.*
+

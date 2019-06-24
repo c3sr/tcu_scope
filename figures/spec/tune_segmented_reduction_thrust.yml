@@ -1,0 +1,37 @@
+
+title: Segmented Reduction thrust::reduce_by_key Tune
+input_file: ../../../results/reduction.json
+output_file: ../../figures/tune_segmented_reduction_thrust
+output_format:
+  - pdf
+  - png
+  - html
+bar_width: 0.08
+legend_columns: 3
+yaxis:
+  label: Billions of Elements / Sec
+  field: flops
+  scale: 1e-9
+  # scaling_function: log10
+  # lim:
+  #   - 10
+  #   - 240
+xaxis:
+  label: Segment Size (log scale)
+  field: segment_size
+  scale: 1.0
+  # lim:
+  #   - 256
+  #   - 8192
+  scaling_function: log
+series:
+  - label: MAX ELEMENTS 2^14
+    regex: THRUST_TUNE_SEGMENTED_REDUCTION.*base_segment_size:16.*max_elements_log2:14.*
+  - label: MAX ELEMENTS 2^18
+    regex: THRUST_TUNE_SEGMENTED_REDUCTION.*base_segment_size:16.*max_elements_log2:18.*
+  - label: MAX ELEMENTS 2^22
+    regex: THRUST_TUNE_SEGMENTED_REDUCTION.*base_segment_size:16.*max_elements_log2:22.*
+  - label: MAX ELEMENTS 2^26
+    regex: THRUST_TUNE_SEGMENTED_REDUCTION.*base_segment_size:16.*max_elements_log2:26.*
+  - label: MAX ELEMENTS 2^30
+    regex: THRUST_TUNE_SEGMENTED_REDUCTION.*base_segment_size:16.*max_elements_log2:30.*
