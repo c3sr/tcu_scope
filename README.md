@@ -1,8 +1,5 @@
-# TOPS: Tensor Ops
+# Accelerating Reduction and Scan Using Tensor Core Units
 
-[![Travis CI](https://img.shields.io/travis/rai-project/tensorcore_bench.svg?style=flat-square)](https://travis-ci.org/rai-project/tensorcore_bench)
-[![CircleCI](https://circleci.com/gh/rai-project/tensorcore_bench.svg?style=svg&circle-token=ed419df9081303ade6d9998bf7ff106963a0021a)](https://circleci.com/gh/rai-project/tensorcore_bench)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/rai-project/tensorcore_bench)
 
 ## Installing latest cmake
 
@@ -179,9 +176,6 @@ Note: There's a bug in cub::WarpScan for LOGICAL_THREADS_PER_WARP = 16.
 
 ![reduction](figures/full_reduction.png "Full Reduction")
 
-### [Trigonometric](src/trigonometric)
-
-#### Comparision
 
 ## Running Individual Benchmarks
 
@@ -281,11 +275,4 @@ You can run benchmarks in the following way (probably with the `--benchmark_filt
 
 
 
-
-## Resources
-
-
-### Atomic Half
-
-[tensorflow](https://github.com/tensorflow/tensorflow/blob/faff6f2a60a01dba57cf3a3ab832279dbe174798/tensorflow/core/util/cuda_device_functions.h#L435-L474)
 
