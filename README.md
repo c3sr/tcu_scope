@@ -1,6 +1,25 @@
 # Accelerating Reduction and Scan Using Tensor Core Units
 
 
+```
+@inproceedings{Dakkak:2019:ARS:3330345.3331057,
+ author = {Dakkak, Abdul and Li, Cheng and Xiong, Jinjun and Gelado, Isaac and Hwu, Wen-mei},
+ title = {Accelerating Reduction and Scan Using Tensor Core Units},
+ booktitle = {Proceedings of the ACM International Conference on Supercomputing},
+ series = {ICS '19},
+ year = {2019},
+ isbn = {978-1-4503-6079-1},
+ location = {Phoenix, Arizona},
+ pages = {46--57},
+ numpages = {12},
+ url = {http://doi.acm.org/10.1145/3330345.3331057},
+ doi = {10.1145/3330345.3331057},
+ acmid = {3331057},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+}
+```
+
 ## Installing latest cmake
 
 cmake version >=3.8 is required.
