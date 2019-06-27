@@ -15,6 +15,7 @@
 
 // from
 // https://github.com/torch/cutorch/blob/653811fa40a780dfa8f0e110f9febf5dfed8f0f0/lib/THC/THCAtomics.cuh#L97
+#if 0
 static inline __device__ void atomicAdd(half *address, half val) {
   unsigned int *address_as_ui =
       (unsigned int *) ((char *) address - ((size_t) address & 2));
@@ -32,6 +33,7 @@ static inline __device__ void atomicAdd(half *address, half val) {
     old = atomicCAS(address_as_ui, assumed, old);
   } while (assumed != old);
 }
+#endif
 
 static inline __device__ short to_short(half x) {
   return __HALF_TO_US(x);
